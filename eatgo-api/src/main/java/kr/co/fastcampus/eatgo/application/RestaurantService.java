@@ -15,10 +15,6 @@ public class RestaurantService {
     @Autowired
     private MenuItemRepository menuItemRepository;
 
-    public RestaurantService(RestaurantRepository restaurantRepository){
-        this.restaurantRepository = restaurantRepository;
-    }
-
     public RestaurantService(RestaurantRepository restaurantRepository,
                              MenuItemRepository menuItemRepository) {
         this.restaurantRepository = restaurantRepository;
@@ -38,5 +34,9 @@ public class RestaurantService {
         restaurant.setMenuItem(menuItems);
 
         return restaurant;
+    }
+
+    public void addRestaurant(Restaurant restaurant) {
+
     }
 }
