@@ -25,6 +25,12 @@ public class RestaurantService {
         this.menuItemRepository = menuItemRepository;
     }
 
+    public List<Restaurant> getRestaurants() {
+        List<Restaurant> restaurants = restaurantRepository.findAll();
+
+        return restaurants;
+    }
+
     public Restaurant getRestaurant(Long id) {
         Restaurant restaurant = restaurantRepository.findById(id);
 
@@ -32,11 +38,5 @@ public class RestaurantService {
         restaurant.setMenuItem(menuItems);
 
         return restaurant;
-    }
-
-    public List<Restaurant> getRestaurants() {
-        List<Restaurant> restaurants = restaurantRepository.findAll();
-
-        return restaurants;
     }
 }
