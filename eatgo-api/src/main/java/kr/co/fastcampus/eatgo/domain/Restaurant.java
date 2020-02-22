@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Transient;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,37 +19,21 @@ public class Restaurant {
 
     @Id
     @GeneratedValue
+    @Setter
     private Long id;
 
     private String name;
     private String address;
 
     @Transient
-    private List<MenuItem> menuItems = new ArrayList<MenuItem>();
-
-    public Restaurant(String name, String address) {
-        this.name = name;
-        this.address = address;
-    }
-
-    public Restaurant(long id, String name, String address) {
-        this.id = id;
-        this.name = name;
-        this.address = address;
-    }
+    private List<MenuItem> menuItems;
 
     public String getInformation(){
         return name + " in " + address;
     }
 
-    public void addMenuItem(MenuItem menuItem) {
-        menuItems.add(menuItem);
-    }
-
-    public void setMenuItem(List<MenuItem> menuItems) {
-        for (MenuItem menuItem : menuItems){
-            addMenuItem(menuItem);
-        }
+    public void setMenuItems(List<MenuItem> menuItems) {
+        this.menuItems = new ArrayList<>(menuItems);
     }
 
     public void updateInformation(String name, String address) {
