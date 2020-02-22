@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class RestaurantService {
@@ -30,7 +29,8 @@ public class RestaurantService {
     }
 
     public Restaurant getRestaurant(Long id) {
-        Restaurant restaurant = restaurantRepository.findById(id).orElse(null);
+        Restaurant restaurant = restaurantRepository.findById(id)
+                .orElseThrow(() -> new RestaurantNotFoundException((id)));
 
         List<MenuItem> menuItems = menuItemRepository.findAllByRestaurantId(id);
         restaurant.setMenuItems(menuItems);

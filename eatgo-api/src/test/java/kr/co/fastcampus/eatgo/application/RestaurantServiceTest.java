@@ -1,7 +1,6 @@
 package kr.co.fastcampus.eatgo.application;
 
 import kr.co.fastcampus.eatgo.domain.*;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -11,8 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static org.hamcrest.core.Is.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 
@@ -64,7 +63,7 @@ class RestaurantServiceTest {
     }
 
     @Test
-    public void getRestaurant() {
+    public void getRestaurantWithExisted() {
         Restaurant restaurant = restaurantService.getRestaurant(1004L);
 
         assertThat(restaurant.getId(), is(1004L));
@@ -72,6 +71,11 @@ class RestaurantServiceTest {
         MenuItem menuItem = restaurant.getMenuItems().get(0);
 
         assertThat(menuItem.getName(), is("Kimchi"));
+    }
+
+    // @Test(expected = RestaurantNotFoundException.class) -> JUnit 4에서 사용하던 기술 JUnit5에서는 실행 불가능 따로 Throw를 하던지 해야핢.
+    public void getRestaurantWithNotExisted() {
+        Restaurant restaurant = restaurantService.getRestaurant(404L);
     }
 
     @Test
