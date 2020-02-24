@@ -12,6 +12,7 @@ import java.util.Optional;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 
@@ -75,7 +76,12 @@ class RestaurantServiceTest {
 
     // @Test(expected = RestaurantNotFoundException.class) -> JUnit 4에서 사용하던 기술 JUnit5에서는 실행 불가능 따로 Throw를 하던지 해야핢.
     public void getRestaurantWithNotExisted() {
+        assertThrows(RestaurantNotFoundException.class,
+                        () -> new RestaurantNotFoundException(404L),
+                        "{}");
         Restaurant restaurant = restaurantService.getRestaurant(404L);
+
+
     }
 
     @Test
