@@ -23,6 +23,10 @@ public class MenuItemService {
         }
     }
 
+    public List<MenuItem> getMenuItems(Long restaurantId) {
+        return menuItemRepository.findAllByRestaurantId(restaurantId);
+    }
+
     private void update(Long restaurantId, MenuItem menuItem) {
         if(menuItem.isDestory()) {
             menuItemRepository.deleteById(menuItem.getId());

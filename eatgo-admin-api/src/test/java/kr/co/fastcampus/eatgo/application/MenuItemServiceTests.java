@@ -12,6 +12,7 @@ import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -28,6 +29,18 @@ class MenuItemServiceTests {
 
         menuItemService = new MenuItemService(menuItemRepository);
     }
+    @Test
+    public void getMenuItems() {
+        List<MenuItem> mockMenuItems = new ArrayList<>();
+        mockMenuItems.add(MenuItem.builder().name("Kimchi").build());
+
+        given(menuItemRepository.findAllByRestaurantId(1004L)).willReturn(mockMenuItems);
+
+        List<MenuItem> menuItems = menuItemService.getMenuItems(1004L);
+
+        MenuItem menuItem = menuItems.get(0);
+    }
+
     @Test
     public void bulkUpdate() {
         List<MenuItem> menuItems = new ArrayList<MenuItem>();
