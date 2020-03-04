@@ -10,7 +10,7 @@ class RestaurantTests {
 
     @Test
     public void creation() {
-        Restaurant restaurant = new Restaurant().builder()
+       Restaurant restaurant = new Restaurant().builder()
                 .id(1004L).name("Bob zip").address("Seoul").build();
 
         assertThat(restaurant.getId(), is(1004L));
