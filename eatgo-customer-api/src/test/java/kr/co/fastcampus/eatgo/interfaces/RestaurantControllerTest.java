@@ -34,11 +34,11 @@ class RestaurantControllerTest {
     public void list() throws Exception {
         List<Restaurant> restaurant = new ArrayList<>();
         restaurant.add(new Restaurant().builder()
-                .id(1004L).name("JOKER House").address("Seoul").build());
+                .id(1004L).categoryId(1L).name("JOKER House").address("Seoul").build());
 
-        given(restaurantService.getRestaurants("Seoul")).willReturn(restaurant);
+        given(restaurantService.getRestaurants("Seoul", 1L)).willReturn(restaurant);
 
-        mvc.perform(get("/restaurants?region=Seoul"))
+        mvc.perform(get("/restaurants?region=Seoul&category=1"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("\"id\":1004")))
                 .andExpect(content().string(containsString("\"name\":\"JOKER House\""))
