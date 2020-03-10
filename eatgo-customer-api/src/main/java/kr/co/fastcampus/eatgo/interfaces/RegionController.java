@@ -17,10 +17,6 @@ public class RegionController {
     @GetMapping("/regions")
     public List<Region> list() {
         List<Region> regions = regionService.getRegions();
-
-        /*List<Region> regions = new ArrayList<>();
-        regions.add(Region.builder().name("Seoul").build());*/
-
         return regions;
     }
 

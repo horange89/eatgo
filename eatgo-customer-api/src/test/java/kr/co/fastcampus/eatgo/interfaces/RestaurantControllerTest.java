@@ -36,9 +36,9 @@ class RestaurantControllerTest {
         restaurant.add(new Restaurant().builder()
                 .id(1004L).name("JOKER House").address("Seoul").build());
 
-        given(restaurantService.getRestaurants()).willReturn(restaurant);
+        given(restaurantService.getRestaurants("Seoul")).willReturn(restaurant);
 
-        mvc.perform(get("/restaurants"))
+        mvc.perform(get("/restaurants?region=Seoul"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("\"id\":1004")))
                 .andExpect(content().string(containsString("\"name\":\"JOKER House\""))

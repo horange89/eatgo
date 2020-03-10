@@ -1,6 +1,5 @@
 package kr.co.fastcampus.eatgo.application;
 
-import kr.co.fastcampus.eatgo.application.RestaurantService;
 import kr.co.fastcampus.eatgo.domain.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -56,7 +55,7 @@ class RestaurantServiceTest {
 
         restaurants.add(restaurant);
 
-        given(restaurantRepository.findAll()).willReturn(restaurants);
+        given(restaurantRepository.findAllByAddressContaining("Seoul")).willReturn(restaurants);
 
         given(restaurantRepository.findById(1004L)).willReturn(Optional.of(restaurant));
     }
@@ -70,7 +69,8 @@ class RestaurantServiceTest {
 
     @Test
     public void getRestaurants() {
-        List<Restaurant> restaurants = restaurantService.getRestaurants();
+        String region = "Seoul";
+        List<Restaurant> restaurants = restaurantService.getRestaurants(region);
 
         Restaurant restaurant = restaurants.get(0);
 
