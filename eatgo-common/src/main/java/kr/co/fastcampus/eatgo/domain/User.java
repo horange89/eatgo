@@ -26,6 +26,8 @@ public class User {
     @NotEmpty
     private String name;
 
+    private String password;
+
     @NotNull
     private Long level;
 

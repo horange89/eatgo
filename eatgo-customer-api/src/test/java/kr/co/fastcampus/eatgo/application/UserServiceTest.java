@@ -34,4 +34,22 @@ class UserServiceTest {
 
         verify(userRepository).save(any());
     }
+
+    //TODO 람다식 공부 후에 예외처리 추가
+    /*
+    @Test
+    public void registerUserWithExistedEmail() {
+        String email = "tester@example.com";
+        String name = "Tester";
+        String password = "test";
+
+        Throwable e = assertThrows(EmailExistedException.class, () -> {
+            throw new EmailExistedException(email);
+        });
+
+        assertEquals("Email is already registered : "+email, e.getMessage());
+        userService.registerUser(email, name, password);
+
+        verify(userRepository, never()).save(any());
+    }*/
 }
