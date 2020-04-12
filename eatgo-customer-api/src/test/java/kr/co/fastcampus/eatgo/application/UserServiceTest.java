@@ -12,11 +12,11 @@ import java.util.Optional;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 class UserServiceTest {
 
@@ -55,7 +55,8 @@ class UserServiceTest {
 
         User mockUser = User.builder().email(email).name(name).password(password).build();
 
-        when(userRepository.findByEmail(email)).thenReturn(Optional.of(mockUser));
+        //when(userRepository.findByEmail(email)).thenReturn(Optional.of(mockUser));
+        given(userRepository.findByEmail(email)).willThrow(new EmailExistedException(email));
         //when(userService.registerUser(email, name, password)).thenReturn(new EmailExistedException(email));
         System.out.println("Email is already registered Test");
 
