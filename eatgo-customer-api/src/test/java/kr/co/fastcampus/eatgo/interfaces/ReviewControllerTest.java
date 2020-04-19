@@ -29,7 +29,7 @@ public class ReviewControllerTest {
 
     @Test
     public void createWithValidAttributes() throws Exception {
-        String token = "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjEwMDQsIm5hbWUiOiJKb2huIn0.8hm6ZOJykSINHxL-rf0yV882fApL3hyQ9-WGlJUyo2A";
+        String token = "";
 
         given(reviewService.addReview(1L, "John", 3,  "Mat-it-da")).willReturn(
                 Review.builder().id(1004L).build()
