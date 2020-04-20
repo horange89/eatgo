@@ -31,6 +31,8 @@ public class User {
     @NotNull
     private Long level;
 
+    private Long restaurantId;
+
     public boolean isAdmin() {
         return level >= 100;
     }
@@ -40,5 +42,14 @@ public class User {
 
     public void deactive() {
         level = 0L;
+    }
+
+    public void setRestaurantId(Long restaurantId){
+        this.level = 50L;
+        this.restaurantId = restaurantId;
+    }
+
+    public boolean isRestaurantOwner() {
+        return level == 50L;
     }
 }
